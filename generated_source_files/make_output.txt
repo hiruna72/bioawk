@@ -1,0 +1,16 @@
+yacc -d awkgram.y
+mv y.tab.c ytab.c
+mv y.tab.h ytab.h
+gcc -g -Wall -O2 -c ytab.c
+gcc -g -Wall -O2   -c -o b.o b.c
+gcc -g -Wall -O2   -c -o main.o main.c
+gcc -g -Wall -O2   -c -o parse.o parse.c
+gcc -g -Wall -O2 maketab.c -o maketab
+./maketab >proctab.c
+gcc -g -Wall -O2   -c -o proctab.o proctab.c
+gcc -g -Wall -O2   -c -o tran.o tran.c
+gcc -g -Wall -O2   -c -o lib.o lib.c
+gcc -g -Wall -O2   -c -o run.o run.c
+gcc -g -Wall -O2   -c -o lex.o lex.c
+gcc -g -Wall -O2   -c -o addon.o addon.c
+gcc -g -Wall -O2 ytab.o b.o main.o parse.o proctab.o tran.o lib.o run.o lex.o addon.o  -o bioawk -lm -lz
