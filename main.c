@@ -56,6 +56,12 @@ int	safe	= 0;	/* 1 => "safe" mode */
 
 int main(int argc, char *argv[])
 {
+    fprintf(stderr, "\n[%s] CMD:", __func__);
+    for (int i = 0; i < argc; ++i) {
+        fprintf(stderr, " %s", argv[i]);
+    }
+    fprintf(stderr,"\n");
+
     const char *fs = NULL;
     char tmp[16];
     FILE *fp = NULL; // stdout redirect file
@@ -215,6 +221,7 @@ int main(int argc, char *argv[])
 
     // close redircting file before exiting..
     if (fp != NULL) fclose(fp);
+
 
     return(errorflag);
 }
